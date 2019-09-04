@@ -43,7 +43,6 @@ This is my initial thoughts for what I want to do.
 - [ ] Driver object
 - [ ] Trip object
 - [ ] Class to sort drivers
-- [ ] 
 
 ## Running this project
 **TODO**
