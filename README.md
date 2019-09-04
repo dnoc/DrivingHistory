@@ -38,11 +38,10 @@ Bob: 0 miles
 This is my initial thoughts for what I want to do.
 - [ ] Spock Tests for each class with logic
 - [ ] DrivingHistory class with main[] to read filename from console
-- [ ] File reader class
-- [ ] Speed calculator class
+- [ ] TripDataService to build Driver and Trip objects from input file
 - [ ] Driver object
 - [ ] Trip object
-- [ ] Class to sort drivers
+- [ ] Speed calculator class
 
 ## Running this project
 **TODO**
@@ -51,8 +50,17 @@ Once I'm done I'll include detailed instructions.
 
 ## Thoughts and Decisions
 
-This will be a list of thought proccess and decisions made in finishing the solution.
+This will be a list of thought process and decisions made in finishing the solution.
+
+- `Round miles and miles per hour to the nearest integer.` 
+For best sorting seems like I should take in float and output the rounded int.
+
+
 
 ## Possible Improvements
 
 I'm going to get this into a nice working state and then identify Nice To Haves.
+
+- Using a logging framework instead of System output
+- Extract Trip creation from processTripLine, it adds 4 lines that bloat the function a bit.
+- Factory for input types, especially if there's more than 2 types. 

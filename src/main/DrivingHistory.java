@@ -9,7 +9,7 @@ public class DrivingHistory {
 
         try {
             final TripDataService tripDataService = new TripDataServiceImpl();
-            final List<String> tripData = tripDataService.buildFromFile(filename);
+            final List<Driver> tripData = tripDataService.buildFromFile(filename);
 
             System.out.println(tripData.toString());
         } catch (IOException ioe) {
