@@ -1,4 +1,5 @@
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class Trip {
 
@@ -22,5 +23,11 @@ public class Trip {
 
     public float getMilesDriven() {
         return milesDriven;
+    }
+
+    public float getSpeed() {
+        final float duration = start.until(end, ChronoUnit.MINUTES);
+
+        return milesDriven / (duration / 60f);
     }
 }
