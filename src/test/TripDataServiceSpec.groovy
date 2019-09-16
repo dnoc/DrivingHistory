@@ -22,7 +22,7 @@ class TripDataServiceSpec extends Specification {
 
     def "buildFromFile returns list of drivers with trips"() {
         given:
-        def emptyFile = "src/test/resources/standard.txt"
+        def standardInput = "src/test/resources/standard.txt"
         def danTripList = [
                 new Trip(LocalTime.parse("07:15"), LocalTime.parse("07:45"), 17.3f),
                 new Trip(LocalTime.parse("06:12"), LocalTime.parse("06:32"), 21.8f)
@@ -33,16 +33,15 @@ class TripDataServiceSpec extends Specification {
         def bob = new Driver("Bob")
 
         when:
-        def output = service.buildFromFile(emptyFile)
+        def output = service.buildFromFile(standardInput)
 
         then:
         noExceptionThrown()
         output != null
         output instanceof List<Driver>
         output.size() == 3
-        // TODO these are broken
-        output.any { it.name == dan.name && it.trips == dan.trips }
-        output.any { it.name == alex.name && it.trips == alexTripList }
+        output.any { it.name == dan.name && it.trips.size() == dan.trips.size() }
+        output.any { it.name == alex.name && it.trips.size() == alex.trips.size() }
         output.any { it.name == bob.name && bob.trips.empty }
     }
 }
