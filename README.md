@@ -38,7 +38,7 @@ Bob: 0 miles
 This is my initial thoughts for what I want to do.
 - [x] Spock Tests for each class with logic
 - [x] DrivingHistory class with main[] to read filename from console and print results
-- [x] TripDataService to build Driver and Trip objects from input file
+- [x] TripFileService to build Driver and Trip objects from input file
 - [x] Driver object
 - [x] Trip object
 - [x] Calculating distance and speed
@@ -59,7 +59,7 @@ This is my initial thoughts for what I want to do.
 This will be a list of thought process and decisions made in finishing the solution.
 
 Starting out I wanted a class with a main function, to compile it and run with a filename.
-I made TripDataService to handle the input and build objects.
+I made TripFileService to handle the input and build objects.
 I thought I'd need a service to calculate speed/distance, and another to sort and print output,
 but I distributed those to the objects themselves, and implementing `Comparable` made sorting much cleaner.
 I think some would say `getAverageSpeed` et. al. should be in a service. I can see it both ways:
