@@ -25,9 +25,21 @@ public class Trip {
         return milesDriven;
     }
 
+    public float getDurationInHours() {
+        return (start.until(end, ChronoUnit.MINUTES) / 60f);
+    }
+
     public float getSpeed() {
         final float duration = start.until(end, ChronoUnit.MINUTES);
 
         return milesDriven / (duration / 60f);
+    }
+
+    public boolean isHighwayTrip() {
+        return getSpeed() >= 50;
+    }
+
+    public boolean isValidTrip() {
+        return getSpeed() <= 100 && getSpeed() >= 5;
     }
 }

@@ -3,22 +3,35 @@ import java.util.Collections;
 import java.util.List;
 
 public class DrivingHistory {
-
+    private static final String NO_TRIPS_OUTPUT_FORMAT = "%s: 0 miles with %d invalid trips.";
+    private static final String OUTPUT_FORMAT = "%s: %d miles @ %d mph %d%% highway miles with %d invalid trips.";
 
     public static void main(String[] args) {
         final String filename = args[0];
 
         try {
-            final TripDataService tripDataService = new TripDataServiceImpl();
-            final List<Driver> tripData = tripDataService.buildFromFile(filename);
+            final TripFileService tripFileService = new TripFileServiceImpl();
+            final TripService tripService = new TripServiceImpl();
+            final List<Driver> tripData = tripFileService.buildFromFile(filename);
 
             Collections.sort(tripData);
 
             for (Driver d : tripData) {
-                if (d.getTotalMilesDriven() == 0) {
-                    System.out.println(d.getName() + ": 0 miles");
+                final List<Trip> trips = d.getTrips();
+                final int totalMilesDriven = tripService.getTotalMilesDriven(trips);
+                if (totalMilesDriven == 0) {
+                    System.out.println(String.format(
+                            NO_TRIPS_OUTPUT_FORMAT,
+                            d.getName(),
+                            tripService.getInvalidTrips(trips).size()));
                 } else {
-                    System.out.println(d.getName() + ": " + d.getTotalMilesDriven() + " miles @ " + d.getAverageSpeed() + " mph");
+                    System.out.println(String.format(
+                            OUTPUT_FORMAT,
+                            d.getName(),
+                            totalMilesDriven,
+                            tripService.getAverageSpeed(trips),
+                            tripService.getPercentageOfHighwayMiles(trips),
+                            tripService.getInvalidTrips(trips).size()));
                 }
             }
         } catch (IOException ioe) {

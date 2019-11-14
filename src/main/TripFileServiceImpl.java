@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TripDataServiceImpl implements TripDataService {
+public class TripFileServiceImpl implements TripFileService {
 
     private static final String DRIVER_PREFIX = "Driver";
     private static final String TRIP_PREFIX = "Trip";
 
-    public TripDataServiceImpl() {}
+    public TripFileServiceImpl() {}
 
     public List<Driver> buildFromFile(final String filename) throws IOException {
         final BufferedReader reader = new BufferedReader(new FileReader(filename));

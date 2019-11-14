@@ -2,9 +2,9 @@ import spock.lang.Specification
 
 import java.time.LocalTime
 
-class TripDataServiceSpec extends Specification {
+class TripFileServiceSpec extends Specification {
 
-    private TripDataService service = new TripDataServiceImpl()
+    private TripFileService service = new TripFileServiceImpl()
 
     def "buildFromFile on empty file returns empty list"() {
         given:

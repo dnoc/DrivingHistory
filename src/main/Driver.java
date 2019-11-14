@@ -28,35 +28,16 @@ public class Driver implements Comparable<Driver> {
         this.trips.add(trip);
     }
 
-    public int getTotalMilesDriven() {
-        if (trips == null) return 0;
-
-        int sum = 0;
-        for (Trip t : trips) {
-            sum += Math.round(t.getMilesDriven());
-        }
-
-        return sum;
-    }
-
-    public int getAverageSpeed() {
-        if (trips == null || trips.size() == 0) return 0;
-
-        int sum = 0;
-        for (Trip t : trips) {
-            sum += Math.round(t.getSpeed());
-        }
-
-        return sum / trips.size();
-    }
-
     @Override
     public int compareTo(final Driver o) {
         if (this == o) return 0;
         if (o == null) return 1;
         if (this.trips == null) return -1;
 
-        final int tripResult = Integer.compare(o.getTotalMilesDriven(), this.getTotalMilesDriven());
+        final TripService service = new TripServiceImpl();
+        final int tripResult = Integer.compare(
+                service.getTotalMilesDriven(o.trips),
+                service.getTotalMilesDriven(this.trips));
 
         if (tripResult == 0) {
             return o.getName().compareTo(this.name);
